@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2017 at 10:30 AM
+-- Generation Time: Nov 25, 2016 at 09:04 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `email`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'kevin.muchiri@aiesec.net');
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'wangoken2@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,11 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id`, `movie_id`, `cinema_id`, `ticket_no`, `date`, `firstname`, `lastname`, `email`, `phone`, `age`, `status`, `id_number`) VALUES
-(1, 1, 4, '201612031000001', '2016-12-03', 'kevin', 'muchiri', 'kevin.muchiri@aiesec.net', '0708087227', 24, 1, '');
+(1, 5, 2, '201611115000001', '2016-11-11', 'Kennedy', 'Wango', 'wangoken2@gmail.com', '0725145304', 26, 1, NULL),
+(2, 1, 1, '201611111000002', '2016-11-11', 'Samson', 'Wachira', 'ken.wango@lixnet.net', '0725145304', 26, 1, '27781190'),
+(3, 5, 2, '201611115000003', '2016-11-11', 'skeww', 'ken', 'skewws@gmail.com', '0725145304', 26, 1, NULL),
+(4, 1, 1, '201611111000004', '2016-11-11', 'Kennedy', 'Wachira', 'wangoken2@gmail.com', '0725145304', 26, 1, NULL),
+(5, 5, 2, '201611115000005', '2016-11-11', 'Kennedy', 'Wachira', 'skewws@gmail.com', '0725145304', 26, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -78,17 +82,20 @@ CREATE TABLE `cinemas` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `number_of_seats` int(11) NOT NULL,
-  `address` text
+  `address` text,
+  `city` varchar(100) DEFAULT NULL,
+  `state` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cinemas`
 --
 
-INSERT INTO `cinemas` (`id`, `name`, `number_of_seats`, `address`) VALUES
-(2, 'Cinemax Nakuru', 50, 'Agricuture House'),
-(3, 'Cinemax Machakos', 50, 'Mulleys Building'),
-(4, 'Cinemax Nairobi', 50, 'Imax Towers');
+INSERT INTO `cinemas` (`id`, `name`, `number_of_seats`, `address`, `city`, `state`) VALUES
+(1, 'Cinema 1', 60, '811', 'Githunguri', 'Kiambu'),
+(2, 'Cinema 2', 60, '123, Nairobi', 'Nakumatt Junction', 'Nairobi'),
+(3, 'Cinema 3', 60, NULL, NULL, NULL),
+(4, 'Cinema 4', 60, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,7 +120,7 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `firstname`, `lastname`, `email`, `subject`, `message`, `date`, `is_seen`, `reply`) VALUES
-(1, 'Kevin', 'Muchiri', 'kevin.muchiri@aiesec.net', 'movies', 'Great selection', '2016-12-03', 0, 'Thank you for the comment');
+(1, 'Kennedy', 'Wango', 'wangoken2@gmail.com', 'Rate Movie', 'Great sites, Great Movies, Great Services', '2016-10-27', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -140,9 +147,11 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `name`, `description`, `preview`, `image`, `genre`, `price`, `rating`, `year`, `age`, `country`) VALUES
-(1, 'Zootopia', 'Based on an animation where animals live in real life human beings ', 'previews/Zootopia_Official_US_Trailer_2.mp4', 'images/703943.jpg', 'Animation', 350.00, 3.7, 2016, '1-10', 'United States'),
-(2, 'Central Intelligence', 'A comedy based on two friends who meet u at a reunion to catch a drug dealer', 'previews/Central_Intelligence_-_Official_Trailer_[HD_.mp4', 'images/4.jpg', 'Comedy', 350.00, 3.4, 2016, '14-18', 'United States'),
-(3, 'Chaos', 'Action packed film starring Jason stratham fighting the bad guys', 'previews/Chaos Trailer.mp4', 'images/Jason-in-Chaos-jason-statham-14341361.jpg', 'Action', 350.00, 2.4, 2005, '18-above', 'United States');
+(1, 'Friday the 13th', 'Friday the 13th (franchise) ... The franchise mainly focuses on the fictional character Jason Voorhees, who drowned as a boy at Camp Crystal Lake due to the negligence of the camp staff and later revenges every Friday the 13th by killing people.', 'previews/---Friday_The_13th_-_Official_Trailer_[HD_-_YouTub.mp4', 'images/645600.jpg', 'Horror', 3000.00, 4.5, 2005, '18-above', 'United States'),
+(5, 'Zootopia', 'From the largest elephant to the smallest shrew, the city of Zootopia is a mammal metropolis where various animals live and thrive. When Judy Hopps (Ginnifer Goodwin) becomes the first rabbit to join the police force, she quickly learns how tough it is to enforce the law. Determined to prove herself, Judy jumps at the opportunity to solve a mysterious case. Unfortunately, that means working with Nick Wilde (Jason Bateman), a wily fox who makes her job even harder.', 'previews/Zootopia_Official_US_Trailer_2.mp4', 'images/703943.jpg', 'Animation', 1500.00, 4.5, 2016, '1-10', 'Kenya'),
+(6, 'Chaos', 'A veteran detective is teamed with a rookie cop when they are sent to negotiate with a bunch of criminals holding a bank hostage. It transpires that a master thief has planted a computer virus that will drain funds from the bank`s accounts. The detective faces a race against time to catch the thief and stop the randomly evolving computer virus, which models its behavior on the bewildering principles of chaos theory.', 'previews/Chaos Trailer.mp4', 'images/Jason-in-Chaos-jason-statham-14341361.jpg', 'Action', 2800.00, 0.9, 2009, '14-18', 'United States'),
+(7, 'Central Intelligence', 'Bullied as a teen for being overweight, Bob Stone (Dwayne Johnson) shows up to his high school reunion looking fit and muscular. While there, he finds Calvin Joyner (Kevin Hart), a fast-talking accountant who misses his glory days as a popular athlete. Stone is now a lethal CIA agent who needs Calvin`s number skills to help him save the compromised U.S. spy satellite system. Together, the former classmates encounter shootouts, espionage and double-crosses while trying to prevent worldwide chaos.', 'previews/Central_Intelligence_-_Official_Trailer_[HD_.mp4', 'images/4.jpg', 'Comedy', 3500.00, 0.9, 2016, '10-14', 'United States'),
+(8, 'Tarzan', 'Tarzan, having acclimated to life in London, is called back to his former home in the jungle to investigate the activities at a mining encampment.', 'previews/---THE_LEGEND_OF_TARZAN_-_Official_Trailer_2.mp4', 'images/5.jpg', 'Drama', 2000.00, 0.0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -162,8 +171,9 @@ CREATE TABLE `movie_periods` (
 --
 
 INSERT INTO `movie_periods` (`id`, `cinema_id`, `date`, `movie_id`) VALUES
-(1, 4, '2016-12-10 10:00:00', 1),
-(2, 3, '2016-12-10 14:00:00', 2);
+(1, 1, '2016-10-28 21:00:00', 1),
+(3, 2, '2016-10-26 12:00:00', 5),
+(6, 4, '2016-11-13 12:00:00', 8);
 
 --
 -- Indexes for dumped tables
@@ -218,7 +228,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `cinemas`
 --
@@ -233,12 +243,12 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `movie_periods`
 --
 ALTER TABLE `movie_periods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
